@@ -36,7 +36,7 @@ public class AddressBook implements EntryPoint {
 			.create(GreetingService.class);
 
 	/**
-	 * This is the entry point method.
+	 * This is the entry point method. This will also have some changes.
 	 */
 	public void onModuleLoad() {
 		final Button sendButton = new Button("Send");
