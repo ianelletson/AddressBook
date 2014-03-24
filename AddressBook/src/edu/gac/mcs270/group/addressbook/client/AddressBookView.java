@@ -56,7 +56,24 @@ public class AddressBookView {
 		
 		makeViewSideBar(horizontalPanel);
 	}
+	
+	public void viewAddEntryPage() {
+		RootPanel rp = RootPanel.get();
+		rp.clear();
+		makeMenuBar(rp);
+		
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		rp.add(horizontalPanel, 10, 79);
+	}
 
+	public void viewSearchPage(){
+		RootPanel rp = RootPanel.get();
+		rp.clear();
+		makeMenuBar(rp);
+		
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		rp.add(horizontalPanel, 10, 79);
+	}
 	private void makeViewSideBar(HorizontalPanel hp) {
 		// TODO Make click handlers
 		VerticalPanel sidePanel = new VerticalPanel();
@@ -111,8 +128,9 @@ public class AddressBookView {
 		//  is root panel
 		MenuBar menuBar = new MenuBar(false);
 		rp.add(menuBar, 94, 39);
-		menuBar.setSize("326px", "32px");
+		menuBar.setSize("400px", "32px");
 
+		
 		MenuItem menuHomeItem = new MenuItem("Home", false, new Command() {
 			public void execute() {
 				viewWelcomePage();
@@ -120,7 +138,6 @@ public class AddressBookView {
 		});
 		menuHomeItem.setHTML("Home");
 		menuBar.addItem(menuHomeItem);
-		
 		menuBar.addSeparator(new MenuItemSeparator());
 
 		// TODO this looks really bad if we have "Address Book" as opposed to book. We need to fix this
@@ -129,21 +146,29 @@ public class AddressBookView {
 				viewBookPage();
 			}
 		});
-		menuViewAdBook.setHTML("Book");
+		menuViewAdBook.setHTML("Address Book");
 		menuBar.addItem(menuViewAdBook);
-		
-		
-		
 		menuBar.addSeparator(new MenuItemSeparator());
 
-		MenuItem menuAddEntry = new MenuItem("Add Entry", false, (Command) null);
+		MenuItem menuAddEntry = new MenuItem("Add Entry", false, new Command() {
+			public void execute() {
+				viewAddEntryPage();
+			}
+		});
+		
 		menuAddEntry.setHTML("Add Entry");
 		menuBar.addItem(menuAddEntry);
 		menuBar.addSeparator(new MenuItemSeparator());
 		
-		MenuItem menuSearchItem = new MenuItem("Search", false, (Command) null);
+		
+		MenuItem menuSearchItem = new MenuItem("Search", false, new Command(){
+			public void execute() {
+				viewSearchPage();
+			}
+		});
 		menuSearchItem.setHTML("Search");
 		menuBar.addItem(menuSearchItem);
 
 	}
 }
+
