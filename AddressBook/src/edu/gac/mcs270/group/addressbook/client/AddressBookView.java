@@ -55,6 +55,7 @@ public class AddressBookView {
 		rp.add(horizontalPanel, 10, 79);
 		
 		makeViewSideBar(horizontalPanel);
+		
 	}
 	
 	public void viewAddEntryPage() {
@@ -170,5 +171,6 @@ public class AddressBookView {
 		menuBar.addItem(menuSearchItem);
 
 	}
+	
 }
 
