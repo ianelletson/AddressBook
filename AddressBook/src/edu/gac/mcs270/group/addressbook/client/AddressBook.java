@@ -15,8 +15,8 @@ public class AddressBook implements EntryPoint {
 	 */
 	// TODO: Create class, see below
 	private final AddressBookView abView = new AddressBookView();
-	private final SubmitEntryService eServ = GWT
-			.create(SubmitEntryServiceAsync.class);
+	private final SubmitEntryServiceAsync eServ = GWT
+			.create(SubmitEntryService.class);
 
 	/**
 	 * The message displayed to the user when the server cannot be reached or
