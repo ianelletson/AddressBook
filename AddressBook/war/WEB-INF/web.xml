@@ -16,6 +16,18 @@
     <url-pattern>/addressbook/greet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+      <servlet-name>submitEntryServiceImpl</servlet-name>
+      <servlet-class>edu.gac.mcs270.group.addressbook.server.SubmitEntryServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>submitEntryToServerImpl</servlet-name>
+      <url-pattern>/addressbook/addressentry</url-pattern>
+  </servlet-mapping>
+  
+
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>AddressBook.html</welcome-file>

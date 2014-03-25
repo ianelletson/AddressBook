@@ -34,11 +34,36 @@ public class AddressEntry implements Serializable {
 	@Persistent
 	private String city = "Nowhere";
 	@Persistent
-	private String State = "Missouri";
+	private String state = "Missouri";
 	@Persistent
 	private int zip = 0;
 	@Persistent
 	private String phoneNumber = "No phone";
+
+	/**
+	 * Default constructor for AddressEntry
+	 */
+	public AddressEntry() {
+	}
+
+	/**
+	 * Create a new AddressEntry object that holds the contact information of some entity
+	 * @param name the entity's name
+	 * @param address the entity's address
+	 * @param city the entity's city
+	 * @param state the entity's state
+	 * @param zip the entity's ZIP code
+	 * @param phoneNumber the entity's phone number
+	 */
+	public AddressEntry(String name, String address, String city, String state,
+			int zip, String phoneNumber) {
+		this.name = name;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.phoneNumber = phoneNumber;
+	}
 
 	public String getName() {
 		return name;
@@ -65,11 +90,11 @@ public class AddressEntry implements Serializable {
 	}
 
 	public String getState() {
-		return State;
+		return state;
 	}
 
 	public void setState(String state) {
-		State = state;
+		this.state = state;
 	}
 
 	public int getZip() {
@@ -100,9 +125,7 @@ public class AddressEntry implements Serializable {
 	@Override
 	// TODO make this print out in label form.
 	public String toString() {
-		return "Address entry: [name=" + name + ", address=" + address
-				+ ", city=" + city + ", State=" + State + ", zip=" + zip
-				+ ", phoneNumber=" + phoneNumber + "]";
+		return name + "\n" + address + "\n" + city + ", " + state + " " + zip + "\n" + phoneNumber;
 	}
 
 }

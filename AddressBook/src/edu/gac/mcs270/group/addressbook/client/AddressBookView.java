@@ -15,6 +15,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import edu.gac.mcs270.group.addressbook.shared.AddressEntry;
+
 /**
  * Class that is shown to user when visiting page, what the user interacts with
  * 
@@ -139,7 +141,8 @@ public class AddressBookView {
 				if (name.length() > 0 && city.length() > 0
 						&& address.length() > 0 && state.length() > 0
 						&& zip >= 0 && phoneNumber.length() == 10) {
-					System.out.println("help!");
+					AddressEntry entry = new AddressEntry(name, address, city, state, zip, phoneNumber);
+					System.out.println(entry);
 					// TODO
 					// control.handlePostSubmit();
 				} else {
