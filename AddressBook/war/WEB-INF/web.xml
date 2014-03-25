@@ -17,16 +17,14 @@
   </servlet-mapping>
   
   <servlet>
-      <servlet-name>submitEntryServiceImpl</servlet-name>
-      <servlet-class>edu.gac.mcs270.group.addressbook.server.SubmitEntryServiceImpl</servlet-class>
+      <servlet-name>submitEntryServlet</servlet-name>
+      <servlet-class>com.gac.edu.mcs270.group.addressbook.server.SubmitEntryServiceImpl</servlet-class>
   </servlet>
-  
-  <servlet-mapping>
-      <servlet-name>submitEntryToServerImpl</servlet-name>
-      <url-pattern>/addressbook/addressentry</url-pattern>
-  </servlet-mapping>
-  
 
+  <servlet-mapping>
+      <servlet-name>submitEntryServlet</servlet-name>
+      <url-patter>/addressbook/submit</url-patter>
+  </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>
