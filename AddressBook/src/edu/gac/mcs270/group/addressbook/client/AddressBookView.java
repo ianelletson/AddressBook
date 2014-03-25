@@ -3,6 +3,7 @@ package edu.gac.mcs270.group.addressbook.client;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -141,11 +142,13 @@ public class AddressBookView {
 				if (name.length() > 0 && city.length() > 0
 						&& address.length() > 0 && state.length() > 0
 						&& zip >= 0 && phoneNumber.length() == 10) {
-					AddressEntry entry = new AddressEntry(name, address, city, state, zip, phoneNumber);
-					System.out.println(entry);
+					AddressEntry entry = new AddressEntry(name, address, city,
+							state, zip, phoneNumber);
+					control.handleEntrySubmit(entry);
 					// TODO
 					// control.handlePostSubmit();
 				} else {
+					Window.alert("Fail");
 					// Should send error message to user
 				}
 			}
@@ -259,5 +262,9 @@ public class AddressBookView {
 		menuSearchItem.setHTML("Search");
 		menuBar.addItem(menuSearchItem);
 
+	}
+
+	public void sendSuccessfulPostMessage() {
+		Window.alert("Successfully stored");
 	}
 }

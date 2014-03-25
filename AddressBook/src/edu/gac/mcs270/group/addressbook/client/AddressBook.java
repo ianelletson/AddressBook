@@ -51,9 +51,7 @@ public class AddressBook implements EntryPoint {
 
 			@Override
 			public void onSuccess(String result) {
-				// abView submit successful message
-				// view data
-				
+				abView.sendSuccessfulPostMessage();
 			}
 		});
 	}
