@@ -25,4 +25,12 @@ public class AddressBookModel {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		pm.makePersistent(entry);
 	}
+	
+	public static void deletePostData(AddressEntry entry){
+		long entryId= entry.getId();
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		AddressEntry ent = pm.getObjectById(AddressEntry.class, entryId);
+		pm.deletePersistent(ent);
+		
+	}
 }

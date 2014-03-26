@@ -1,4 +1,5 @@
 package edu.gac.mcs270.group.addressbook.client;
+import java.util.List;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -56,9 +57,56 @@ public class AddressBook implements EntryPoint {
 		});
 	}
 
-	// TODO: handleDeleteRequest
-	// TODO: handlePrintEntries
+	public void viewEntryDataFromServer(){
+		eServ.getEntryDataFromServer(
+				new AsyncCallback<List<AddressEntry>>() {
+					public void onFailure(Throwable caught) {
+						return;
+					}
+
+					@Override
+					public void onSuccess(List<AddressEntry> data) {
+						abView.viewBookPage(data);
+					}
+				});
+	}
+	
+	public void handleDeleteRequest(AddressEntry entry) {
+		eServ.deleteEntryFromServer(entry,
+				new AsyncCallback<String>() {
+					public void onFailure(Throwable caught) {
+						return;
+					}
+
+					@Override
+					public void onSuccess(String result) {
+						abView.sendSuccessfulDeletePostMessage();
+						viewEntryDataFromServer();
+					}
+				});
+	}
+
 	// TODO: handleSearchRequest
 	// TODO: handleSortRequest
+
+	public void handlePrintRequest() {
+		eServ.getEntryDataFromServer(
+				new AsyncCallback<List<AddressEntry>>() {
+					public void onFailure(Throwable caught) {
+						return;
+					}
+
+					@Override
+					public void onSuccess(List<AddressEntry> data) {
+						for(AddressEntry ent: data){
+							System.out.println(ent);
+							System.out.println();
+						}
+						
+						abView.viewBookPage(data);
+						abView.sendSuccessfulPrintMessage();
+					}
+				});
+	}
 
 }

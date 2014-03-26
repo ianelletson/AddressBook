@@ -1,7 +1,11 @@
 package edu.gac.mcs270.group.addressbook.server;
+import java.util.List;
+
 import edu.gac.mcs270.group.addressbook.client.SubmitEntryService;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import edu.gac.mcs270.group.addressbook.shared.AddressEntry;
 
 
@@ -13,6 +17,14 @@ public class SubmitEntryServiceImpl extends RemoteServiceServlet implements Subm
 public String submitEntryToServer(AddressEntry entry) {
 	AddressBookModel.storePost(entry);
 	return "Entry submitted okay";
+}
+@Override
+public List<AddressEntry> getEntryDataFromServer() { 
+		return AddressBookModel.getAddressEntry();
+	}
+public String deleteEntryFromServer(AddressEntry entry){
+	AddressBookModel.deletePostData(entry);
+	return "Entry deleted okay";
 }
 //
 //@Override
