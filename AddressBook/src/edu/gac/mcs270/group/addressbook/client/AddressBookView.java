@@ -271,12 +271,12 @@ public class AddressBookView {
 				String address = addressTextBox.getText();
 				String city = cityTextBox.getText();
 				String state = stateTextBox.getText();
-				int zip = Double.valueOf(zipTextBox.getText()).intValue();
+				String zip = zipTextBox.getText();
 				String phoneNumber = phoneTextBox.getText();
 				// Validate entries
 				if (name.length() > 0 && city.length() > 0
 						&& address.length() > 0 && state.length() > 0
-						&& zip >= 0 && phoneNumber.length() == 10) {
+						&& zip.length() >= 0 && phoneNumber.length() == 10) {
 					AddressEntry entry = new AddressEntry(name, address, city,
 							state, zip, phoneNumber);
 					control.handleEntrySubmit(entry);
@@ -324,24 +324,24 @@ public class AddressBookView {
 		sidePanel.add(sortZipButton);
 
 		// TODO: Add click handler for sort by zip
-		// sortZipButton.addClickHandler(new ClickHandler() {
-		// @Override
-		// public void onClick(ClickEvent event) {
-		// control.viewAdDataFromServer();
-		// }
-		// });
-		// sidePanel.add(sortZipButton);
+		sortZipButton.addClickHandler(new ClickHandler() {
+		@Override
+		public void onClick(ClickEvent event) {
+		control.viewDataByZipFromServer();
+		}
+		});
+		
 
 		Button sortNameButton = new Button("Sort by Name");
 		sortNameButton.setStyleName("sideBarButton");
 		sortNameButton.setText("Sort by Name");
 		// TODO: add click handler for sort by name
-		// sortNameButton.addClickHandler(new ClickHandler() {
-		// @Override
-		// public void onClick(ClickEvent event) {
-		// control.viewAdDataFromServer();
-		// }
-		// });
+		sortNameButton.addClickHandler(new ClickHandler() {
+		@Override
+		public void onClick(ClickEvent event) {
+		control.viewDataByNameFromServer();
+		}
+		});
 		sidePanel.add(sortNameButton);
 	}
 

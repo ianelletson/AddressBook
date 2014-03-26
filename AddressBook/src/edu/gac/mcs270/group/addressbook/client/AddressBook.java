@@ -71,6 +71,36 @@ public class AddressBook implements EntryPoint {
 				});
 	}
 	
+	public void viewDataByNameFromServer(){
+		eServ.getByName(
+				new AsyncCallback<List<AddressEntry>>() {
+					public void onFailure(Throwable caught) {
+						return;
+					}
+
+					@Override
+					public void onSuccess(List<AddressEntry> data) {
+						abView.viewBookPage(data);
+					}
+				});
+	}
+	
+	public void viewDataByZipFromServer(){
+		eServ.getByZip(
+				new AsyncCallback<List<AddressEntry>>() {
+					public void onFailure(Throwable caught) {
+						return;
+					}
+
+					@Override
+					public void onSuccess(List<AddressEntry> data) {
+						abView.viewBookPage(data);
+					}
+				});
+	}
+	
+	
+	
 	public void handleDeleteRequest(AddressEntry entry) {
 		eServ.deleteEntryFromServer(entry,
 				new AsyncCallback<String>() {

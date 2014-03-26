@@ -14,4 +14,8 @@ public interface SubmitEntryServiceAsync {
 	void getEntryDataFromServer(AsyncCallback<List<AddressEntry>> asyncCallback);
 
 	void deleteEntryFromServer(AddressEntry entry,AsyncCallback<String> asyncCallback);
+
+	void getByName(AsyncCallback<List<AddressEntry>> asyncCallback);
+	void getByZip(AsyncCallback<List<AddressEntry>> asyncCallback);
+	
 }

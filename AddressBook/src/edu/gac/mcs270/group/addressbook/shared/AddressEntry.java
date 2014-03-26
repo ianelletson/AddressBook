@@ -1,6 +1,7 @@
 package edu.gac.mcs270.group.addressbook.shared;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
@@ -36,9 +37,25 @@ public class AddressEntry implements Serializable {
 	@Persistent
 	private String state = "Missouri";
 	@Persistent
-	private int zip = 0;
+	private String zip ="0";
 	@Persistent
 	private String phoneNumber = "No phone";
+	
+	/**
+	 * defines the Comparators for sorting
+	 */
+
+	public static Comparator<AddressEntry> COMPARE_BY_NAME = new Comparator<AddressEntry>() {
+        public int compare(AddressEntry one, AddressEntry other) {
+            return one.name.compareTo(other.name);
+        }
+    };
+
+    public static Comparator<AddressEntry> COMPARE_BY_ZIP = new Comparator<AddressEntry>() {
+        public int compare(AddressEntry one, AddressEntry other) {
+            return one.zip.compareTo(other.zip);
+        }
+    };
 
 	/**
 	 * Default constructor for AddressEntry
@@ -56,7 +73,7 @@ public class AddressEntry implements Serializable {
 	 * @param phoneNumber the entity's phone number
 	 */
 	public AddressEntry(String name, String address, String city, String state,
-			int zip, String phoneNumber) {
+			String zip, String phoneNumber) {
 		this.name = name;
 		this.address = address;
 		this.city = city;
@@ -97,11 +114,11 @@ public class AddressEntry implements Serializable {
 		this.state = state;
 	}
 
-	public int getZip() {
+	public String getZip() {
 		return zip;
 	}
 
-	public void setZip(int zip) {
+	public void setZip(String zip) {
 		this.zip = zip;
 	}
 

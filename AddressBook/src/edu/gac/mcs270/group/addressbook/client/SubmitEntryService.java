@@ -15,4 +15,9 @@ public interface SubmitEntryService extends RemoteService {
 	public List<AddressEntry> getEntryDataFromServer();
 	
 	public String deleteEntryFromServer(AddressEntry entry);
+	
+	public List<AddressEntry> getByName();
+	
+	public List<AddressEntry> getByZip();
+	
 }

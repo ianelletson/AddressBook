@@ -26,6 +26,15 @@ public String deleteEntryFromServer(AddressEntry entry){
 	AddressBookModel.deletePostData(entry);
 	return "Entry deleted okay";
 }
+
+public List<AddressEntry> getByName() { 
+		return AddressBookModel.getSortedByName();
+	}
+
+public List<AddressEntry> getByZip() { 
+		return AddressBookModel.getSortedByZip();
+	}
+
 //
 //@Override
 //public String changePostToServer(long postId, PostData newPost) {
