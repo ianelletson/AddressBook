@@ -29,7 +29,9 @@ public class AddressEntry implements Serializable {
 	 * Our private fields that are persistent and save-able
 	 */
 	@Persistent
-	private String name = "No name";
+	private String lastName = "No last name";
+	@Persistent
+	private String firstName = "No first name";
 	@Persistent
 	private String address = "No address";
 	@Persistent
@@ -37,9 +39,9 @@ public class AddressEntry implements Serializable {
 	@Persistent
 	private String state = "Missouri";
 	@Persistent
-	private String zip ="0";
+	private String zip ="00000";
 	@Persistent
-	private String phoneNumber = "No phone";
+	private String phoneNumber = "0000000000";
 	
 	/**
 	 * defines the Comparators for sorting
@@ -47,7 +49,7 @@ public class AddressEntry implements Serializable {
 
 	public static Comparator<AddressEntry> COMPARE_BY_NAME = new Comparator<AddressEntry>() {
         public int compare(AddressEntry one, AddressEntry other) {
-            return one.name.compareTo(other.name);
+            return one.lastName.compareTo(other.lastName);
         }
     };
 
@@ -65,16 +67,17 @@ public class AddressEntry implements Serializable {
 
 	/**
 	 * Create a new AddressEntry object that holds the contact information of some entity
-	 * @param name the entity's name
+	 * @param lastName the entity's name
 	 * @param address the entity's address
 	 * @param city the entity's city
 	 * @param state the entity's state
 	 * @param zip the entity's ZIP code
 	 * @param phoneNumber the entity's phone number
 	 */
-	public AddressEntry(String name, String address, String city, String state,
+	public AddressEntry(String lastName, String firstName, String address, String city, String state,
 			String zip, String phoneNumber) {
-		this.name = name;
+		this.lastName = lastName;
+		this.firstName = firstName;
 		this.address = address;
 		this.city = city;
 		this.state = state;
@@ -83,11 +86,15 @@ public class AddressEntry implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		return lastName + ", " + firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLastName(String name) {
+		this.lastName = name;
+	}
+	
+	public void setFirstname(String name) {
+		this.firstName = name;
 	}
 
 	public String getAddress() {
@@ -142,7 +149,7 @@ public class AddressEntry implements Serializable {
 	@Override
 	// TODO make this print out in label form.
 	public String toString() {
-		return name + "\n" + address + "\n" + city + ", " + state + " " + zip + "\n" + phoneNumber;
+		return lastName + "\n" + address + "\n" + city + ", " + state + " " + zip + "\n" + phoneNumber;
 	}
 
 }

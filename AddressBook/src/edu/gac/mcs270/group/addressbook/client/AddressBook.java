@@ -42,7 +42,6 @@ public class AddressBook implements EntryPoint {
 		abView.viewWelcomePage();
 	};
 
-	// TODO: handleAddressSubmit
 	public void handleEntrySubmit(AddressEntry entry) {
 		eServ.submitEntryToServer(entry,
 				new AsyncCallback<String>() {
@@ -115,9 +114,6 @@ public class AddressBook implements EntryPoint {
 					}
 				});
 	}
-
-	// TODO: handleSearchRequest
-	// TODO: handleSortRequest
 
 	public void handlePrintRequest() {
 		eServ.getEntryDataFromServer(

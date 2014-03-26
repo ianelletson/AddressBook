@@ -53,7 +53,8 @@ public class AddressBookView {
 	}
 
 	public void viewBookPage(List<AddressEntry> entries) {
-		if(entries==null) return;
+		if (entries == null)
+			return;
 
 		RootPanel rp = RootPanel.get();
 		rp.clear();
@@ -63,34 +64,34 @@ public class AddressBookView {
 		rp.add(horizontalPanel, 10, 79);
 
 		makeViewSideBar(horizontalPanel);
-	
+
 		VerticalPanel dataListPanel = new VerticalPanel();
 		horizontalPanel.add(dataListPanel);
 
 		FlowPanel flowPanel = new FlowPanel();
 		dataListPanel.add(flowPanel);
 
-//		Label progTitlebar = new Label("GusList");
-//		progTitlebar.addStyleName("appTitleBar");
-//		progTitlebar.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-//		flowPanel.add(progTitlebar);
+		// Label progTitlebar = new Label("GusList");
+		// progTitlebar.addStyleName("appTitleBar");
+		// progTitlebar.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		// flowPanel.add(progTitlebar);
 
 		makePostTable(entries, flowPanel);
 	}
-	
+
 	private void makePostTable(List<AddressEntry> entry, FlowPanel flowPanel) {
-		for(AddressEntry ent: entry){
+		for (AddressEntry ent : entry) {
 			flowPanel.add(makePostRow(ent));
 		}
 	}
 
 	private HorizontalPanel makePostRow(final AddressEntry entry) {
 		HorizontalPanel row = new HorizontalPanel();
-		Label nameLabel = new Label(entry.getName()+ " ");
+		Label nameLabel = new Label(entry.getName() + " ");
 		nameLabel.addStyleName("postLabel");
-		Label addressLabel = new Label(entry.getAddress()+" ");
+		Label addressLabel = new Label(entry.getAddress() + " ");
 		addressLabel.addStyleName("postLabel");
-		Label cityLabel = new Label(entry.getCity()+", "+entry.getState());
+		Label cityLabel = new Label(entry.getCity() + ", " + entry.getState());
 		cityLabel.addStyleName("postLabel");
 		Button infoButton = new Button("More Info");
 		infoButton.addStyleName("postInfoButton");
@@ -99,9 +100,9 @@ public class AddressBookView {
 			@Override
 			public void onClick(ClickEvent event) {
 				viewEntryData(entry);
-				
+
 			}
-	      });
+		});
 		row.add(nameLabel);
 		row.add(addressLabel);
 		row.add(cityLabel);
@@ -116,7 +117,7 @@ public class AddressBookView {
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		rootPanel.add(horizontalPanel, 10, 79);
-		
+
 		VerticalPanel dataListPanel = new VerticalPanel();
 		horizontalPanel.add(dataListPanel);
 
@@ -129,11 +130,12 @@ public class AddressBookView {
 		titleLabel.addStyleName("postTitle");
 		titlePanel.add(titleLabel);
 		flowPanel.add(titlePanel);
-		
+
 		// Phone Number TextArea
 		HorizontalPanel phonePanel = new HorizontalPanel();
-		String phone= entry.getPhoneNumber();
-		Label phoneLabel = new Label("Phone Number: "+ phone.substring(0, 3)+"-"+phone.substring(3, 6)+"-"+phone.substring(6, 10));
+		String phone = entry.getPhoneNumber();
+		Label phoneLabel = new Label("Phone Number: " + phone.substring(0, 3)
+				+ "-" + phone.substring(3, 6) + "-" + phone.substring(6, 10));
 		phoneLabel.addStyleName("postBody");
 		phonePanel.add(phoneLabel);
 		flowPanel.add(phonePanel);
@@ -144,7 +146,7 @@ public class AddressBookView {
 		addressLabel.addStyleName("postBody");
 		addressPanel.add(addressLabel);
 		flowPanel.add(addressPanel);
-		
+
 		// Zip TextBox
 		HorizontalPanel zipPanel = new HorizontalPanel();
 		Label zipLabel = new Label("Zip Code: " + entry.getZip());
@@ -165,7 +167,7 @@ public class AddressBookView {
 		stateLabel.addStyleName("postBody");
 		statePanel.add(stateLabel);
 		flowPanel.add(statePanel);
-		
+
 		// Edit Post Button
 		Button editPostButton = new Button("Edit Ad");
 		editPostButton.setStyleName("sideBarButton");
@@ -175,8 +177,8 @@ public class AddressBookView {
 		editPostButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				//TODO:Create viewEditEntry(entry)
-				//viewEditPostAdForm(entry);
+				// TODO:Create viewEditEntry(entry)
+				// viewEditPostAdForm(entry);
 			}
 		});
 
@@ -211,12 +213,19 @@ public class AddressBookView {
 		VerticalPanel postFormPanel = new VerticalPanel();
 		horizontalPanel.add(postFormPanel);
 
-		// Name input
+		// First name input
 		HorizontalPanel nameRow = new HorizontalPanel();
-		Label nameLabel = new Label("Last name, First name");
-		final TextBox nameTextbox = new TextBox();
-		nameRow.add(nameLabel);
-		nameRow.add(nameTextbox);
+		Label firstNameLabel = new Label("First name");
+		final TextBox firstNameTextBox = new TextBox();
+		nameRow.add(firstNameLabel);
+		nameRow.add(firstNameTextBox);
+		// postFormPanel.add(nameRow);
+
+		// Last name input
+		Label lastNameLabel = new Label("Last name");
+		final TextBox lastNameTextBox = new TextBox();
+		nameRow.add(lastNameLabel);
+		nameRow.add(lastNameTextBox);
 		postFormPanel.add(nameRow);
 
 		// Address input
@@ -267,18 +276,20 @@ public class AddressBookView {
 		submitButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				String name = nameTextbox.getText();
+				String firstName = firstNameTextBox.getText();
+				String lastName = lastNameTextBox.getText();
 				String address = addressTextBox.getText();
 				String city = cityTextBox.getText();
 				String state = stateTextBox.getText();
 				String zip = zipTextBox.getText();
 				String phoneNumber = phoneTextBox.getText();
 				// Validate entries
-				if (name.length() > 0 && city.length() > 0
-						&& address.length() > 0 && state.length() > 0
-						&& zip.length() >= 0 && phoneNumber.length() == 10) {
-					AddressEntry entry = new AddressEntry(name, address, city,
-							state, zip, phoneNumber);
+				if (firstName.length() > 0 && lastName.length() > 0
+						&& city.length() > 0 && address.length() > 0
+						&& state.length() > 0 && zip.length() >= 0
+						&& phoneNumber.length() == 10) {
+					AddressEntry entry = new AddressEntry(lastName, firstName,
+							address, city, state, zip, phoneNumber);
 					control.handleEntrySubmit(entry);
 					// TODO
 					// control.handlePostSubmit();
@@ -311,11 +322,11 @@ public class AddressBookView {
 		print.setText("Print");
 
 		print.addClickHandler(new ClickHandler() {
-		@Override
-		public void onClick(ClickEvent event) {
-		 control.handlePrintRequest();
-		}
-		 });
+			@Override
+			public void onClick(ClickEvent event) {
+				control.handlePrintRequest();
+			}
+		});
 		sidePanel.add(print);
 
 		Button sortZipButton = new Button("Sort by Zip");
@@ -325,22 +336,21 @@ public class AddressBookView {
 
 		// TODO: Add click handler for sort by zip
 		sortZipButton.addClickHandler(new ClickHandler() {
-		@Override
-		public void onClick(ClickEvent event) {
-		control.viewDataByZipFromServer();
-		}
+			@Override
+			public void onClick(ClickEvent event) {
+				control.viewDataByZipFromServer();
+			}
 		});
-		
 
 		Button sortNameButton = new Button("Sort by Name");
 		sortNameButton.setStyleName("sideBarButton");
 		sortNameButton.setText("Sort by Name");
 		// TODO: add click handler for sort by name
 		sortNameButton.addClickHandler(new ClickHandler() {
-		@Override
-		public void onClick(ClickEvent event) {
-		control.viewDataByNameFromServer();
-		}
+			@Override
+			public void onClick(ClickEvent event) {
+				control.viewDataByNameFromServer();
+			}
 		});
 		sidePanel.add(sortNameButton);
 	}
@@ -365,7 +375,6 @@ public class AddressBookView {
 		menuHomeItem.setHTML("Home");
 		menuBar.addItem(menuHomeItem);
 		menuBar.addSeparator(new MenuItemSeparator());
-
 
 		MenuItem menuViewAdBook = new MenuItem("Address Book", false,
 				new Command() {
@@ -400,10 +409,12 @@ public class AddressBookView {
 	public void sendSuccessfulPostMessage() {
 		Window.alert("Successfully stored");
 	}
-	public void sendSuccessfulDeletePostMessage(){
+
+	public void sendSuccessfulDeletePostMessage() {
 		Window.alert("DELETED!! -- Bye Bye");
 	}
-	public void sendSuccessfulPrintMessage(){
+
+	public void sendSuccessfulPrintMessage() {
 		Window.alert("Sucessfully Printed Address Book");
 	}
 }
