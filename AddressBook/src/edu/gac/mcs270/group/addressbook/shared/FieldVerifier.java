@@ -26,11 +26,12 @@ public class FieldVerifier {
 	 * Verifies that the specified name is valid for our service.
 	 * 
 	 * In this example, we only require that the name is at least four
-	 * characters. In your application, you can use more complex checks to ensure
-	 * that usernames, passwords, email addresses, URLs, and other fields have the
-	 * proper syntax.
+	 * characters. In your application, you can use more complex checks to
+	 * ensure that usernames, passwords, email addresses, URLs, and other fields
+	 * have the proper syntax.
 	 * 
-	 * @param name the name to validate
+	 * @param name
+	 *            the name to validate
 	 * @return true if valid, false if invalid
 	 */
 	public static boolean isValidName(String name) {
@@ -38,5 +39,31 @@ public class FieldVerifier {
 			return false;
 		}
 		return name.length() > 1;
+	}
+
+	public static boolean isValidCity(String name) {
+		return isValidName(name);
+	}
+
+	public static boolean isValidState(String name) {
+		return isValidName(name);
+	}
+
+	public static boolean isValidAddress(String name) {
+		return isValidName(name);
+	}
+
+	public static boolean isValidPhoneNumber(String number) {
+		if (number == null) {
+			return false;
+		}
+		return number.length() == 10;
+	}
+
+	public static boolean isValidZIP(String zip) {
+		if (zip == null) {
+			return false;
+		}
+		return zip.length() == 5;
 	}
 }

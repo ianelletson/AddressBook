@@ -18,6 +18,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import edu.gac.mcs270.group.addressbook.shared.AddressEntry;
+import edu.gac.mcs270.group.addressbook.shared.FieldVerifier;
 
 /**
  * Class that is shown to user when visiting page, what the user interacts with
@@ -27,6 +28,7 @@ import edu.gac.mcs270.group.addressbook.shared.AddressEntry;
  */
 public class AddressBookView {
 	private AddressBook control;
+	private FieldVerifier fv = new FieldVerifier();
 
 	/**
 	 * Default constructor
@@ -284,6 +286,7 @@ public class AddressBookView {
 				String zip = zipTextBox.getText();
 				String phoneNumber = phoneTextBox.getText();
 				// Validate entries
+				// TODO field verifier
 				if (firstName.length() > 0 && lastName.length() > 0
 						&& city.length() > 0 && address.length() > 0
 						&& state.length() > 0 && zip.length() >= 0
