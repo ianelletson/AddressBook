@@ -22,6 +22,20 @@ public class AddressBookModel {
 		return new ArrayList<AddressEntry>(posts);
 	}
 	
+	public static List<AddressEntry> getSearchResult(String searchString) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Query query = pm.newQuery(AddressEntry.class);
+		List<AddressEntry> posts = (List<AddressEntry>) query.execute();
+		List<AddressEntry> searchResult = new ArrayList<AddressEntry>();
+		for(int i=0; i<posts.size(); i++){
+			if (posts.get(i).getName().toLowerCase().contains(searchString.toLowerCase())||posts.get(i).getAddress().toLowerCase().contains(searchString.toLowerCase())||posts.get(i).getCity().toLowerCase().contains(searchString.toLowerCase())||posts.get(i).getState().toLowerCase().contains(searchString.toLowerCase())||posts.get(i).getZip().toLowerCase().contains(searchString.toLowerCase())||posts.get(i).getPhoneNumber().toLowerCase().contains(searchString.toLowerCase())) {
+				searchResult.add(posts.get(i));
+			}
+		}
+			return new ArrayList<AddressEntry>(searchResult);
+		
+	}
+	
 	public static List<AddressEntry> getSortedByName() {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Query query = pm.newQuery(AddressEntry.class);

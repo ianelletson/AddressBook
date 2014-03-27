@@ -20,4 +20,5 @@ public interface SubmitEntryService extends RemoteService {
 	
 	public List<AddressEntry> getByZip();
 	
+	public List<AddressEntry> getSearchResult(String searchString);
 }

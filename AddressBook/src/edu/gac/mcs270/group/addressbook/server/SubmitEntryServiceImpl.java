@@ -35,6 +35,10 @@ public List<AddressEntry> getByZip() {
 		return AddressBookModel.getSortedByZip();
 	}
 
+public List<AddressEntry> getSearchResult(String searchString) { 
+	return AddressBookModel.getSearchResult(searchString);
+}
+
 //
 //@Override
 //public String changePostToServer(long postId, PostData newPost) {

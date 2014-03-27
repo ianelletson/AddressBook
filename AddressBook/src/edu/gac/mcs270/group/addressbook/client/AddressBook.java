@@ -97,6 +97,19 @@ public class AddressBook implements EntryPoint {
 					}
 				});
 	}
+	public void searchData(String searchString){
+		eServ.getSearchResult(searchString,
+				new AsyncCallback<List<AddressEntry>>() {
+					public void onFailure(Throwable caught) {
+						return;
+					}
+
+					@Override
+					public void onSuccess(List<AddressEntry> data) {
+						abView.viewBookPage(data);
+					}
+				});
+	}
 	
 	
 	

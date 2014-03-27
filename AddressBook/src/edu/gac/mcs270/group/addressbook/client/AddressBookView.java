@@ -312,6 +312,25 @@ public class AddressBookView {
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		rp.add(horizontalPanel, 10, 79);
+		VerticalPanel searchFormPanel = new VerticalPanel();
+		horizontalPanel.add(searchFormPanel);
+
+		// Search input
+		HorizontalPanel searchRow = new HorizontalPanel();
+		Button searchButton = new Button("Search");
+		searchButton.setStyleName("sideBarButton");
+		searchButton.setText("Search");
+		final TextBox searchBox = new TextBox();
+		searchRow.add(searchButton);
+		searchRow.add(searchBox);
+		searchFormPanel.add(searchRow);
+		searchButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				String searchString = searchBox.getText();
+				control.searchData(searchString);
+			}
+		});
 	}
 
 	private void makeViewSideBar(HorizontalPanel hp) {
