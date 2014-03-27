@@ -300,7 +300,6 @@ public class AddressBookView {
 				String zip = zipTextBox.getText();
 				String phoneNumber = phoneTextBox.getText();
 				// Validate entries
-				// TODO field verifier
 				if (FieldVerifier.isValidName(firstName)
 						&& FieldVerifier.isValidName(lastName)
 						&& FieldVerifier.isValidAddress(address)

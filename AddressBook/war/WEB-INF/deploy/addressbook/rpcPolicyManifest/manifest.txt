@@ -1,2 +1,4 @@
 # Module addressbook
 # RPC service class, partial path of RPC policy file
+edu.gac.mcs270.group.addressbook.client.SubmitEntryService, 1950B45B186C97351E795C0D90592456.gwt.rpc
+edu.gac.mcs270.group.addressbook.client.GreetingService, BF632C0C8C8B6C92C6CDB229985BFF54.gwt.rpc
