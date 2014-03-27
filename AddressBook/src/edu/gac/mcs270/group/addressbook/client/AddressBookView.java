@@ -175,8 +175,8 @@ public class AddressBookView {
 		editPostButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				//TODO:Create viewEditEntry(entry)
-				//viewEditPostAdForm(entry);
+				control.viewEditEntryPage(entry)
+				
 			}
 		});
 
@@ -211,12 +211,19 @@ public class AddressBookView {
 		VerticalPanel postFormPanel = new VerticalPanel();
 		horizontalPanel.add(postFormPanel);
 
-		// Name input
+		// First name input
 		HorizontalPanel nameRow = new HorizontalPanel();
-		Label nameLabel = new Label("Last name, First name");
-		final TextBox nameTextbox = new TextBox();
-		nameRow.add(nameLabel);
-		nameRow.add(nameTextbox);
+		Label firstNameLabel = new Label("First name");
+		final TextBox firstNameTextBox = new TextBox();
+		nameRow.add(firstNameLabel);
+		nameRow.add(firstNameTextBox);
+		// postFormPanel.add(nameRow);
+
+		// Last name input
+		Label lastNameLabel = new Label("Last name");
+		final TextBox lastNameTextBox = new TextBox();
+		nameRow.add(lastNameLabel);
+		nameRow.add(lastNameTextBox);
 		postFormPanel.add(nameRow);
 
 		// Address input
@@ -289,6 +296,78 @@ public class AddressBookView {
 			}
 		});
 		postFormPanel.add(submitButton);
+	}
+	//makes the page to edit the entry
+	public void viewEditEntryPage(AddressEntry entry) {
+		RootPanel rootPanel = RootPanel.get();
+		rootPanel.clear();
+		makeMenuBar(rootPanel);
+
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		rootPanel.add(horizontalPanel, 10, 79);
+
+		VerticalPanel postFormPanel = new VerticalPanel();
+		horizontalPanel.add(postFormPanel);
+		
+		// First name input
+		HorizontalPanel nameRow = new HorizontalPanel();
+		Label firstNameLabel = new Label("First name");
+		final TextBox firstNameTextBox = new TextBox();
+		nameRow.add(firstNameLabel);
+		nameRow.add(firstNameTextBox);
+		postFormPanel.add(nameRow);
+
+		// Last name input
+		Label lastNameLabel = new Label("Last name");
+		final TextBox lastNameTextBox = new TextBox();
+		nameRow.add(lastNameLabel);
+		nameRow.add(lastNameTextBox);
+		postFormPanel.add(nameRow);
+
+		// Address input
+		HorizontalPanel addressRow = new HorizontalPanel();
+		Label addressLabel = new Label("Street Address");
+		final TextBox addressTextBox = new TextBox();
+		addressRow.add(addressLabel);
+		addressRow.add(addressTextBox);
+		postFormPanel.add(addressRow);
+
+		// City input
+		HorizontalPanel cityRow = new HorizontalPanel();
+		Label cityLabel = new Label("City");
+		final TextBox cityTextBox = new TextBox();
+		cityRow.add(cityLabel);
+		cityRow.add(cityTextBox);
+		postFormPanel.add(cityRow);
+
+		// State input
+		HorizontalPanel stateRow = new HorizontalPanel();
+		Label stateLabel = new Label("State");
+		final TextBox stateTextBox = new TextBox();
+		stateRow.add(stateLabel);
+		stateRow.add(stateTextBox);
+		postFormPanel.add(stateRow);
+
+		// Zip input
+		HorizontalPanel zipRow = new HorizontalPanel();
+		Label zipLabel = new Label("Zip");
+		final TextBox zipTextBox = new TextBox();
+		zipRow.add(zipLabel);
+		zipRow.add(zipTextBox);
+		postFormPanel.add(zipRow);
+
+		// Phone Number input
+		HorizontalPanel phoneRow = new HorizontalPanel();
+		Label phoneLabel = new Label("Phone Number");
+		final TextBox phoneTextBox = new TextBox();
+		phoneRow.add(phoneLabel);
+		phoneRow.add(phoneTextBox);
+		postFormPanel.add(phoneRow);
+
+		// Submit button
+		Button submitButton = new Button("Add Entry");
+		submitButton.setStyleName("sideBarButton");
+		submitButton.setText("Add Entry");
 	}
 
 	public void viewSearchPage() {
