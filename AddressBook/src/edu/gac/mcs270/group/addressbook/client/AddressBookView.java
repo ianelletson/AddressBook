@@ -50,6 +50,13 @@ public class AddressBookView {
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		rootPanel.add(horizontalPanel, 10, 79);
+		
+		makeViewSideBar(horizontalPanel);
+
+		VerticalPanel dataListPanel = new VerticalPanel();
+		horizontalPanel.add(dataListPanel);
+		
+		
 		// We don't need a side bar on the welcome page
 		// makeViewSideBar(horizontalPanel);
 	}
@@ -212,8 +219,15 @@ public class AddressBookView {
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		rootPanel.add(horizontalPanel, 10, 79);
 
+		makeViewSideBar(horizontalPanel);
+
+		VerticalPanel dataListPanel = new VerticalPanel();
+		horizontalPanel.add(dataListPanel);
+		
 		VerticalPanel postFormPanel = new VerticalPanel();
 		horizontalPanel.add(postFormPanel);
+		
+		
 
 		// First name input
 		HorizontalPanel nameRow = new HorizontalPanel();
@@ -287,17 +301,19 @@ public class AddressBookView {
 				String phoneNumber = phoneTextBox.getText();
 				// Validate entries
 				// TODO field verifier
-				if (firstName.length() > 0 && lastName.length() > 0
-						&& city.length() > 0 && address.length() > 0
-						&& state.length() > 0 && zip.length() >= 0
-						&& phoneNumber.length() == 10) {
+				if (FieldVerifier.isValidName(firstName)
+						&& FieldVerifier.isValidName(lastName)
+						&& FieldVerifier.isValidAddress(address)
+						&& FieldVerifier.isValidCity(city)
+						&& FieldVerifier.isValidZIP(zip)
+						&& FieldVerifier.isValidPhoneNumber(phoneNumber)) {
 					AddressEntry entry = new AddressEntry(lastName, firstName,
 							address, city, state, zip, phoneNumber);
 					control.handleEntrySubmit(entry);
 					// TODO
 					// control.handlePostSubmit();
 				} else {
-					Window.alert("Fail");
+					Window.alert("Check your input, your ZIP should be 5 digits and your phone number 10");
 					// Should send error message to user
 				}
 			}
