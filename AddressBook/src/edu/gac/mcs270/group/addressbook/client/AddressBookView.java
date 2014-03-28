@@ -7,7 +7,6 @@ import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MenuBar;
@@ -28,7 +27,6 @@ import edu.gac.mcs270.group.addressbook.shared.FieldVerifier;
  */
 public class AddressBookView {
 	private AddressBook control;
-	private FieldVerifier fv = new FieldVerifier();
 
 	/**
 	 * Default constructor
@@ -286,18 +284,17 @@ public class AddressBookView {
 				String zip = zipTextBox.getText();
 				String phoneNumber = phoneTextBox.getText();
 				// Validate entries
-				// TODO field verifier
-				if (firstName.length() > 0 && lastName.length() > 0
-						&& city.length() > 0 && address.length() > 0
-						&& state.length() > 0 && zip.length() >= 0
-						&& phoneNumber.length() == 10) {
+				if (FieldVerifier.isValidName(firstName)
+						&& FieldVerifier.isValidName(lastName)
+						&& FieldVerifier.isValidAddress(address)
+						&& FieldVerifier.isValidCity(city)
+						&& FieldVerifier.isValidZIP(zip)
+						&& FieldVerifier.isValidPhoneNumber(phoneNumber)) {
 					AddressEntry entry = new AddressEntry(lastName, firstName,
 							address, city, state, zip, phoneNumber);
 					control.handleEntrySubmit(entry);
-					// TODO
-					// control.handlePostSubmit();
 				} else {
-					Window.alert("Fail");
+					Window.alert("Check your input, your ZIP should be 5 digits and your phone number 10");
 					// Should send error message to user
 				}
 			}
