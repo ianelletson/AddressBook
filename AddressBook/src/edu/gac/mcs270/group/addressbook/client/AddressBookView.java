@@ -48,6 +48,11 @@ public class AddressBookView {
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		rootPanel.add(horizontalPanel, 10, 79);
+		
+		makeViewSideBar(horizontalPanel);
+
+		VerticalPanel dataListPanel = new VerticalPanel();
+		horizontalPanel.add(dataListPanel);
 		// We don't need a side bar on the welcome page
 		// makeViewSideBar(horizontalPanel);
 	}
@@ -210,6 +215,11 @@ public class AddressBookView {
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		rootPanel.add(horizontalPanel, 10, 79);
 
+		makeViewSideBar(horizontalPanel);
+
+		VerticalPanel dataListPanel = new VerticalPanel();
+		horizontalPanel.add(dataListPanel);
+
 		VerticalPanel postFormPanel = new VerticalPanel();
 		horizontalPanel.add(postFormPanel);
 
@@ -306,9 +316,16 @@ public class AddressBookView {
 		RootPanel rp = RootPanel.get();
 		rp.clear();
 		makeMenuBar(rp);
+		
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		rp.add(horizontalPanel, 10, 79);
+		
+		makeViewSideBar(horizontalPanel);
+
+		VerticalPanel dataListPanel = new VerticalPanel();
+		horizontalPanel.add(dataListPanel);
+		
 		VerticalPanel searchFormPanel = new VerticalPanel();
 		horizontalPanel.add(searchFormPanel);
 
