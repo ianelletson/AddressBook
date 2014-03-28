@@ -48,15 +48,18 @@ public class AddressBookView {
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		rootPanel.add(horizontalPanel, 10, 79);
-		
+
 		makeViewSideBar(horizontalPanel);
 
 		VerticalPanel dataListPanel = new VerticalPanel();
 		horizontalPanel.add(dataListPanel);
-		// We don't need a side bar on the welcome page
-		// makeViewSideBar(horizontalPanel);
 	}
 
+	/**
+	 * View a page with a list of Address Entries
+	 * 
+	 * @param entries
+	 */
 	public void viewBookPage(List<AddressEntry> entries) {
 		if (entries == null)
 			return;
@@ -76,11 +79,6 @@ public class AddressBookView {
 		FlowPanel flowPanel = new FlowPanel();
 		dataListPanel.add(flowPanel);
 
-		// Label progTitlebar = new Label("GusList");
-		// progTitlebar.addStyleName("appTitleBar");
-		// progTitlebar.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		// flowPanel.add(progTitlebar);
-
 		makePostTable(entries, flowPanel);
 	}
 
@@ -90,6 +88,12 @@ public class AddressBookView {
 		}
 	}
 
+	/**
+	 * Used for displaying an address entry
+	 * 
+	 * @param entry
+	 * @return
+	 */
 	private HorizontalPanel makePostRow(final AddressEntry entry) {
 		HorizontalPanel row = new HorizontalPanel();
 		Label nameLabel = new Label(entry.getName() + " ");
@@ -182,8 +186,6 @@ public class AddressBookView {
 		editPostButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				// TODO:Create viewEditEntry(entry)
-				// viewEditPostAdForm(entry);
 			}
 		});
 
@@ -312,20 +314,22 @@ public class AddressBookView {
 		postFormPanel.add(submitButton);
 	}
 
+	/**
+	 * View the search page
+	 */
 	public void viewSearchPage() {
 		RootPanel rp = RootPanel.get();
 		rp.clear();
 		makeMenuBar(rp);
-		
 
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		rp.add(horizontalPanel, 10, 79);
-		
+
 		makeViewSideBar(horizontalPanel);
 
 		VerticalPanel dataListPanel = new VerticalPanel();
 		horizontalPanel.add(dataListPanel);
-		
+
 		VerticalPanel searchFormPanel = new VerticalPanel();
 		horizontalPanel.add(searchFormPanel);
 

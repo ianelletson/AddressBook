@@ -1,4 +1,5 @@
 package edu.gac.mcs270.group.addressbook.client;
+
 import java.util.List;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -14,7 +15,6 @@ public class AddressBook implements EntryPoint {
 	/**
 	 * This variables are our view and communications
 	 */
-	// TODO: Create class, see below
 	private final AddressBookView abView = new AddressBookView();
 	private final SubmitEntryServiceAsync eServ = GWT
 			.create(SubmitEntryService.class);
@@ -23,6 +23,7 @@ public class AddressBook implements EntryPoint {
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.
 	 */
+	@SuppressWarnings("unused")
 	private static final String SERVER_ERROR = "An error occurred while "
 			+ "attempting to contact the server. Please check your network "
 			+ "connection and try again.";
@@ -31,6 +32,7 @@ public class AddressBook implements EntryPoint {
 	 * Create a remote service proxy to talk to the server-side Greeting
 	 * service.
 	 */
+	@SuppressWarnings("unused")
 	private final GreetingServiceAsync greetingService = GWT
 			.create(GreetingService.class);
 
@@ -42,10 +44,15 @@ public class AddressBook implements EntryPoint {
 		abView.viewWelcomePage();
 	};
 
+	/**
+	 * Submit an address entry
+	 * 
+	 * @param entry
+	 *            the AddressEntry class
+	 */
 	public void handleEntrySubmit(AddressEntry entry) {
-		eServ.submitEntryToServer(entry,
-				new AsyncCallback<String>() {
-			public void onFailure(Throwable caught) { 
+		eServ.submitEntryToServer(entry, new AsyncCallback<String>() {
+			public void onFailure(Throwable caught) {
 				return;
 			}
 
@@ -56,48 +63,61 @@ public class AddressBook implements EntryPoint {
 		});
 	}
 
-	public void viewEntryDataFromServer(){
-		eServ.getEntryDataFromServer(
-				new AsyncCallback<List<AddressEntry>>() {
-					public void onFailure(Throwable caught) {
-						return;
-					}
+	/**
+	 * For displaying stored entries
+	 */
+	public void viewEntryDataFromServer() {
+		eServ.getEntryDataFromServer(new AsyncCallback<List<AddressEntry>>() {
+			public void onFailure(Throwable caught) {
+				return;
+			}
 
-					@Override
-					public void onSuccess(List<AddressEntry> data) {
-						abView.viewBookPage(data);
-					}
-				});
+			@Override
+			public void onSuccess(List<AddressEntry> data) {
+				abView.viewBookPage(data);
+			}
+		});
 	}
-	
-	public void viewDataByNameFromServer(){
-		eServ.getByName(
-				new AsyncCallback<List<AddressEntry>>() {
-					public void onFailure(Throwable caught) {
-						return;
-					}
 
-					@Override
-					public void onSuccess(List<AddressEntry> data) {
-						abView.viewBookPage(data);
-					}
-				});
-	}
-	
-	public void viewDataByZipFromServer(){
-		eServ.getByZip(
-				new AsyncCallback<List<AddressEntry>>() {
-					public void onFailure(Throwable caught) {
-						return;
-					}
+	/**
+	 * Sorting by last name
+	 */
+	public void viewDataByNameFromServer() {
+		eServ.getByName(new AsyncCallback<List<AddressEntry>>() {
+			public void onFailure(Throwable caught) {
+				return;
+			}
 
-					@Override
-					public void onSuccess(List<AddressEntry> data) {
-						abView.viewBookPage(data);
-					}
-				});
+			@Override
+			public void onSuccess(List<AddressEntry> data) {
+				abView.viewBookPage(data);
+			}
+		});
 	}
-	public void searchData(String searchString){
+
+	/**
+	 * Sorting by ZIP
+	 */
+	public void viewDataByZipFromServer() {
+		eServ.getByZip(new AsyncCallback<List<AddressEntry>>() {
+			public void onFailure(Throwable caught) {
+				return;
+			}
+
+			@Override
+			public void onSuccess(List<AddressEntry> data) {
+				abView.viewBookPage(data);
+			}
+		});
+	}
+
+	/**
+	 * Search for selected string in any part of stored AddressEntry data
+	 * 
+	 * @param searchString
+	 *            client input search string
+	 */
+	public void searchData(String searchString) {
 		eServ.getSearchResult(searchString,
 				new AsyncCallback<List<AddressEntry>>() {
 					public void onFailure(Throwable caught) {
@@ -110,42 +130,46 @@ public class AddressBook implements EntryPoint {
 					}
 				});
 	}
-	
-	
-	
-	public void handleDeleteRequest(AddressEntry entry) {
-		eServ.deleteEntryFromServer(entry,
-				new AsyncCallback<String>() {
-					public void onFailure(Throwable caught) {
-						return;
-					}
 
-					@Override
-					public void onSuccess(String result) {
-						abView.sendSuccessfulDeletePostMessage();
-						viewEntryDataFromServer();
-					}
-				});
+	/**
+	 * Delete data from server
+	 * 
+	 * @param entry
+	 */
+	public void handleDeleteRequest(AddressEntry entry) {
+		eServ.deleteEntryFromServer(entry, new AsyncCallback<String>() {
+			public void onFailure(Throwable caught) {
+				return;
+			}
+
+			@Override
+			public void onSuccess(String result) {
+				abView.sendSuccessfulDeletePostMessage();
+				viewEntryDataFromServer();
+			}
+		});
 	}
 
+	/**
+	 * Print data to system console
+	 */
 	public void handlePrintRequest() {
-		eServ.getEntryDataFromServer(
-				new AsyncCallback<List<AddressEntry>>() {
-					public void onFailure(Throwable caught) {
-						return;
-					}
+		eServ.getEntryDataFromServer(new AsyncCallback<List<AddressEntry>>() {
+			public void onFailure(Throwable caught) {
+				return;
+			}
 
-					@Override
-					public void onSuccess(List<AddressEntry> data) {
-						for(AddressEntry ent: data){
-							System.out.println(ent);
-							System.out.println();
-						}
-						
-						abView.viewBookPage(data);
-						abView.sendSuccessfulPrintMessage();
-					}
-				});
+			@Override
+			public void onSuccess(List<AddressEntry> data) {
+				for (AddressEntry ent : data) {
+					System.out.println(ent);
+					System.out.println();
+				}
+
+				abView.viewBookPage(data);
+				abView.sendSuccessfulPrintMessage();
+			}
+		});
 	}
 
 }

@@ -13,46 +13,76 @@ import edu.gac.mcs270.group.addressbook.shared.AddressEntry;
 public class AddressBookModel {
 	static final PersistenceManagerFactory pmf = PMF.get();
 
-	
-	
+	/**
+	 * Get the address entries in List form
+	 * 
+	 * @return
+	 */
 	public static List<AddressEntry> getAddressEntry() {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Query query = pm.newQuery(AddressEntry.class);
 		List<AddressEntry> posts = (List<AddressEntry>) query.execute();
 		return new ArrayList<AddressEntry>(posts);
 	}
-	
+
+	/**
+	 * Return a search result
+	 * 
+	 * @param searchString
+	 * @return the search result
+	 */
 	public static List<AddressEntry> getSearchResult(String searchString) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Query query = pm.newQuery(AddressEntry.class);
 		List<AddressEntry> posts = (List<AddressEntry>) query.execute();
 		List<AddressEntry> searchResult = new ArrayList<AddressEntry>();
-		for(int i=0; i<posts.size(); i++){
-			if (posts.get(i).getName().toLowerCase().contains(searchString.toLowerCase())||posts.get(i).getAddress().toLowerCase().contains(searchString.toLowerCase())||posts.get(i).getCity().toLowerCase().contains(searchString.toLowerCase())||posts.get(i).getState().toLowerCase().contains(searchString.toLowerCase())||posts.get(i).getZip().toLowerCase().contains(searchString.toLowerCase())||posts.get(i).getPhoneNumber().toLowerCase().contains(searchString.toLowerCase())) {
+		for (int i = 0; i < posts.size(); i++) {
+			if (posts.get(i).getName().toLowerCase()
+					.contains(searchString.toLowerCase())
+					|| posts.get(i).getAddress().toLowerCase()
+							.contains(searchString.toLowerCase())
+					|| posts.get(i).getCity().toLowerCase()
+							.contains(searchString.toLowerCase())
+					|| posts.get(i).getState().toLowerCase()
+							.contains(searchString.toLowerCase())
+					|| posts.get(i).getZip().toLowerCase()
+							.contains(searchString.toLowerCase())
+					|| posts.get(i).getPhoneNumber().toLowerCase()
+							.contains(searchString.toLowerCase())) {
 				searchResult.add(posts.get(i));
 			}
 		}
-			return new ArrayList<AddressEntry>(searchResult);
-		
+		return new ArrayList<AddressEntry>(searchResult);
+
 	}
-	
+
+	/**
+	 * Sort address entries by name
+	 * 
+	 * @return
+	 */
 	public static List<AddressEntry> getSortedByName() {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Query query = pm.newQuery(AddressEntry.class);
 		List<AddressEntry> posts = (List<AddressEntry>) query.execute();
-		
-		//Sort by Name Algorithm
+
+		// Sort by Name Algorithm
 		Collections.sort(posts, AddressEntry.COMPARE_BY_NAME);
-		
+
 		return new ArrayList<AddressEntry>(posts);
 	}
-	
+
+	/**
+	 * Sort address entries by ZIP
+	 * 
+	 * @return
+	 */
 	public static List<AddressEntry> getSortedByZip() {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Query query = pm.newQuery(AddressEntry.class);
 		List<AddressEntry> posts = (List<AddressEntry>) query.execute();
-		
-		//Sort by Zip Algorithm
+
+		// Sort by Zip Algorithm
 		Collections.sort(posts, AddressEntry.COMPARE_BY_ZIP);
 		return new ArrayList<AddressEntry>(posts);
 	}
@@ -61,12 +91,12 @@ public class AddressBookModel {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		pm.makePersistent(entry);
 	}
-	
-	public static void deletePostData(AddressEntry entry){
-		long entryId= entry.getId();
+
+	public static void deletePostData(AddressEntry entry) {
+		long entryId = entry.getId();
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		AddressEntry ent = pm.getObjectById(AddressEntry.class, entryId);
 		pm.deletePersistent(ent);
-		
+
 	}
 }
